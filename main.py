@@ -18,6 +18,7 @@ app = FastAPI(
 
 mcp = FastApiMCP(app, http_client=httpx.AsyncClient(timeout=60))
 mcp.mount_http()
+mcp.setup_server()
 
 SUPPORTED_SITES = ["indeed", "linkedin", "zip_recruiter", "glassdoor", "google", "bayt", "naukri"]
 
