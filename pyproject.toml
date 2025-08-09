@@ -6,8 +6,8 @@ authors = [
     { name = "Shannon Atkinson", email = "rainmanjam@gmail.com" }
 ]
 readme = "README.md"
-requires-python = ">=3.8"
-license = { file = "LICENSE" }
+requires-python = ">=3.10,<4.0"
+license = { file = "LICENSE.md" }
 keywords = ["fastapi", "jobspy", "docker", "api", "job-search"]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -21,14 +21,15 @@ classifiers = [
     "Operating System :: OS Independent"
 ]
 dependencies = [
-    "fastapi=0.115.12",
-    "uvicorn[standard]=0.34.2",
-    "python-jobspy=1.1.80",
-    "pydantic=2.11.3",
-    "pydantic-settings=2.9.1",
-    "python-multipart=0.0.20",
-    "psutil=7.0.0",
-    "python-dotenv=1.1.0"
+    "fastapi==0.115.12",
+    "uvicorn[standard]==0.34.2",
+    "python-jobspy==1.1.80",
+    "pydantic==2.11.3",
+    "pydantic-settings==2.9.1",
+    "python-multipart==0.0.20",
+    "psutil==7.0.0",
+    "python-dotenv==1.1.0",
+    "fastapi-mcp>=0.4.0",
 ]
 
 [project.optional-dependencies]
@@ -50,7 +51,7 @@ packages = ["app"]
 line-length = 88
 target-version = ['py38']
 exclude = '''
-/(
+/( 
     \.git
   | \.venv
   | build

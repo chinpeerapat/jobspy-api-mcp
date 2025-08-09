@@ -4,12 +4,16 @@ from fastapi import FastAPI, Query, HTTPException
 from pydantic import BaseModel, Field
 from jobspy import scrape_jobs
 import pandas as pd
+from fastapi_mcp import FastApiMCP
 
 app = FastAPI(
     title="JobSpy Docker API",
     description="API for searching jobs across multiple platforms using JobSpy",
     version="1.0.0",
 )
+
+mcp = FastApiMCP(app)
+mcp.mount_http()
 
 SUPPORTED_SITES = ["indeed", "linkedin", "zip_recruiter", "glassdoor", "google", "bayt", "naukri"]
 
