@@ -13,6 +13,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from fastapi_mcp import FastApiMCP
 
 from app.cache import cache
 from app.config import settings
@@ -27,6 +28,10 @@ from app.utils.error_handlers import (
     http_exception_handler,
     validation_exception_handler,
 )
+
+mcp = FastApiMCP(app, http_client=httpx.AsyncClient(timeout=60))
+mcp.mount_http()
+mcp.setup_server()
 
 # Determine log level from environment - priority to "LOG_LEVEL" over "DEBUG" flag for consistency
 log_level_name = os.getenv("LOG_LEVEL", "INFO").upper()
