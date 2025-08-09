@@ -29,10 +29,6 @@ from app.utils.error_handlers import (
     validation_exception_handler,
 )
 
-mcp = FastApiMCP(app, http_client=httpx.AsyncClient(timeout=60))
-mcp.mount_http()
-mcp.setup_server()
-
 # Determine log level from environment - priority to "LOG_LEVEL" over "DEBUG" flag for consistency
 log_level_name = os.getenv("LOG_LEVEL", "INFO").upper()
 try:
@@ -114,6 +110,11 @@ app = FastAPI(
     ],
     swagger_ui_parameters={"defaultModelsExpandDepth": -1},
 )
+
+mcp = FastApiMCP(app, http_client=httpx.AsyncClient(timeout=60))
+mcp.mount_http()
+mcp.setup_server()
+
 
 @app.on_event("startup")
 async def startup_event():
