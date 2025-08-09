@@ -5,6 +5,7 @@ import os
 import time
 import uuid
 from typing import List, Optional, Union
+import httpx
 
 from contextlib import asynccontextmanager
 
