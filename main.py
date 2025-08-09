@@ -9,10 +9,14 @@ from fastapi_mcp import FastApiMCP
 app = FastAPI(
     title="JobSpy Docker API",
     description="API for searching jobs across multiple platforms using JobSpy",
-    version="1.0.0",
+    version="1.0.0",   
 )
+# mcp_app = FastAPI(title="JobSpy MCP",
+#     description="MCP for searching jobs across multiple platforms using JobSpy",
+#     version="1.0.0",
+#     )
 
-mcp = FastApiMCP(app)
+mcp = FastApiMCP(app, http_client=httpx.AsyncClient(timeout=60))
 mcp.mount_http()
 
 SUPPORTED_SITES = ["indeed", "linkedin", "zip_recruiter", "glassdoor", "google", "bayt", "naukri"]
@@ -177,3 +181,4 @@ if not ENABLE_API_KEY_AUTH:
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    # uvicorn.run("main:mcp_app", host="0.0.0.0", port=8001, reload=True)
